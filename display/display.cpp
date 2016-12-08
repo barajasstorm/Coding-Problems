@@ -2,52 +2,62 @@
 #include <vector>
 using namespace std;
 
+//function prototype
 int numsize(int number);
+
+//global variables
 vector<int> sizemultiplier, numofdigits, displaynumber;
 
+//main function
 int main() {
   int lettersize, number;
 
-
+  // input data set
   cin >> lettersize >> number;
+
   while(lettersize != 0 && number != 0){
      int size;
      size = numsize(number);
+
+     //will add size value to num of digits vector
      numofdigits.push_back(size);
+
+     //will add individual digits back to displaynumber vector in reverse order
      for(int x = size-1; x >= 0; x--){
         displaynumber.push_back(number%10);
         number = (number / 10);
+        cout << number << endl;
      }
+    
+    //will add lettersize back to sizemultiplier vector
     sizemultiplier.push_back(lettersize);
+
+    //will ask for new set before ending loop of while
     cin >> lettersize >> number;
     }
-    for(int k = 1; k <= 2*sizemultiplier[i]+3; k++){
-      int r = 0, h = 0, o, s;
+
+
+      int endindex = 0, h = 0, reversestartindex;
+      
+      //iterate through numofdigits vector, each iteration represents one data set
       for (int i = 0; i < numofdigits.size(); i++){
-          o = r + numofdigits[i];
-          s = numofdigits[i];
-              while(o  > r){
-                 o = r + s - 1;
+
+        reversestartindex  = endindex + numofdigits[i];
+          
+              //display numbers in reverse order on vector for one data set
+              while(reversestartindex > endindex){
+                 reversestartindex--;
+                 cout << displaynumber[reversestartindex] << endl;
                  h++;
-                 cout << displaynumber[o];
-                    switch(displaynumber[o]){
-                      case 1:
-                      case 2:
-                      case 3:
-                      case 4:
-                      case 5:
-                      case 6:
-                      case 7:
-                      case 8:
-                      case 9:
-                      case 0:
-                    }
               }
+              endindex = endindex + h;
            }
-    }
 }
 
 
+
+
+//number size calculator function
 int numsize(int number){
   if(number <= 9) return 1;
   if(number > 9 && number <= 99) return 2;
