@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <string>
 using namespace std;
 
 //function prototype
@@ -8,6 +9,62 @@ void out();
 
 //global variables
 vector<int> sizemultiplier, numofdigits, displaynumber;
+
+//number design
+string design[10][5] = {
+  {" - ",
+   "| |",
+   "   ",
+   "| |",
+   " _ ",},
+  {"   ",
+   "  |",
+   "  |",
+   "  |",
+   "   "},
+  {" - ",
+   "  |",
+   " - ",
+   "|  ",
+   " - "},
+  {" - ",
+   "  |",
+   " _ ",
+   "  |",
+   " - "},
+  {"   ",
+   "| |",
+   " - ",
+   "  |",
+   "   "},
+  {" - ",
+   "|  ",
+   " - ",
+   "  |",
+   " - "},
+  {" - ",
+   "|  ",
+   " - ",
+   "| |",
+   " - ",},
+  {" - ",
+   "  |",
+   "   ",
+   "  |",
+   "   "},
+  {" - ",
+   "| |",
+   " - ",
+   "| |",
+   " - "},
+  {" - ",
+   "| |",
+   " - ",
+   "  |",
+   " - "},
+};
+
+
 
 //main function
 int main() {
@@ -42,21 +99,32 @@ int main() {
 //function to display all numbers
 void out(){
   //variables for cout iterations
-  int endindex = 0, h = 0, reversestartindex;
+  int endindex = 0, h = -1, reversestartindex;
 
   //iterate through numofdigits vector, each iteration represents one data set
   for (int i = 0; i < numofdigits.size(); i++){
-    reversestartindex  = endindex + numofdigits[i];
+    
+    //will iterate through the five rows of every number
+    for(int row = 0; row < 5; row++){
 
+    reversestartindex  = endindex + numofdigits[i];
+    
     //display numbers in reverse order on vector for one data set
     while(reversestartindex > endindex){
       reversestartindex--;
-      cout << displaynumber[reversestartindex] << endl;
+      cout <<  design[displaynumber[reversestartindex]][row];
+      }
+      //increase endindex position by one for every number
       h++;
+      cout << endl;
+      }
+
+      //increase endindex position by number of digits displayed in previous set
+      endindex = endindex + h;
     }
-    endindex = endindex + h;
-  }
 }
+
+
 
 //number size calculator function
 int numsize(int number){
