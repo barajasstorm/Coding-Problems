@@ -99,7 +99,7 @@ int main() {
 //function to display all numbers
 void out(){
   //variables for cout iterations
-  int endindex = 0, h = -1, reversestartindex;
+  int endindex = -1, h = 0, index;
 
   //iterate through numofdigits vector, each iteration represents one data set
   for (int i = 0; i < numofdigits.size(); i++){
@@ -107,18 +107,17 @@ void out(){
     //will iterate through the five rows of every number
     for(int row = 0; row < 5; row++){
 
-    reversestartindex  = endindex + numofdigits[i];
-    
+    index  = endindex + numofdigits[i];
+    h = 0;
     //display numbers in reverse order on vector for one data set
-    while(reversestartindex > endindex){
-      reversestartindex--;
-      cout <<  design[displaynumber[reversestartindex]][row];
+    while(index > endindex){
+      cout <<  design[displaynumber[index]][row];
+      index--;
+      if(row == 4) h++;
       }
       //increase endindex position by one for every number
-      h++;
       cout << endl;
       }
-
       //increase endindex position by number of digits displayed in previous set
       endindex = endindex + h;
     }
@@ -133,9 +132,9 @@ int numsize(int number){
   if(number > 99 && number <= 999) return 3;
   if(number > 999 && number <= 9999) return 4;
   if(number > 9999 && number <= 99999) return 5;
-  if(number > 99999 && number <= 9999999) return 6;
-  if(number > 999999 && number <= 99999999) return 7;
-  if(number > 9999999 && number <= 999999999) return 8;
+  if(number > 99999 && number <= 999999) return 6;
+  if(number > 999999 && number <= 9999999) return 7;
+  if(number > 9999999 && number <= 99999999) return 8;
   else return 0;
 }
 
